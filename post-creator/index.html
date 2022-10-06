@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- metadata -->
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+        <!-- title and favicon -->
+        <title>Supabase Web App</title>
+        <link rel="icon" type="image/x-icon" href="/assets/alchemy-favicon.png" />
+
+        <!-- js -->
+        <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+        <script type="module" src="app.js"></script>
+
+        <!-- fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600&family=Titillium+Web:wght@200;400;600&display=swap"
+        />
+
+        <!-- css -->
+        <link rel="stylesheet" href="post-creator.css" />
+        <link rel="stylesheet" href="../styles/form.css" />
+        <link rel="stylesheet" href="../styles/reset.css" />
+        <link rel="stylesheet" href="../styles/global.css" />
+        <!-- add link for page specific css -->
+    </head>
+
+    <body>
+        <header class="page-header">
+            <img class="logo" src="/assets/html_css_js.png" alt="logo" />
+            <p class="title">Supabase Web App</p>
+            <nav>
+                <a href="/">Home</a>
+                <a id="sign-out-link" href="auth">Sign Out</a>
+            </nav>
+        </header>
+
+        <main>
+            <form id="post-form">
+                <label>
+                    <div>Category</div>
+                    <select
+                        name="category"
+                        required
+                        placeholder="Post category?"
+                        id="category-select"
+                    >
+                        <option value="gaming">Gaming</option>
+                        <option value="pets">Pets</option>
+                        <option value="food">Food</option>
+                        <option value="travel">Travel</option>
+                        <option value="finance">Finance</option>
+                        <option value="tech">Tech</option>
+                    </select>
+                </label>
+
+                <label>
+                    <div>Title</div>
+                    <input
+                        name="title"
+                        required
+                        placeholder="title of your post?"
+                        id="title-input"
+                    />
+                </label>
+
+                <label>
+                    <div>Description</div>
+                    <textarea
+                        name="description"
+                        required
+                        placeholder="what would you like others to know?"
+                        id="description-textarea"
+                    ></textarea>
+                </label>
+
+                <label>
+                    <div>Photo</div>
+                    <input
+                        name="image_url"
+                        id="image-input"
+                        type="file"
+                        placeholder="upload an image..."
+                    />
+                </label>
+                <img
+                    id="preview"
+                    class="preview"
+                    src="../assets/placeholder-image.png"
+                    alt="post-image preview"
+                />
+
+                <button id="add-post-button">Add Post</button>
+
+                <p id="error-display" class="error"></p>
+            </form>
+        </main>
+    </body>
+</html>
