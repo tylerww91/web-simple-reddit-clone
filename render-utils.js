@@ -1,11 +1,11 @@
 export function renderPost(post) {
     const li = document.createElement('li');
 
-    const a = document.createElement('a');
-    a.href = `/post/?id=${post.id}`;
-
     const img = document.createElement('img');
     img.src = post.image_url;
+    if (!post.image_url) {
+        img.src = '/assets/placeholder-image.png';
+    }
 
     const h2 = document.createElement('h2');
     h2.textContent = post.title;
@@ -19,8 +19,7 @@ export function renderPost(post) {
     const desc = document.createElement('p');
     desc.textContent = post.description;
 
-    a.append(h2, desc, timeStamp);
-    li.append(a);
+    li.append(h2, desc, img, timeStamp);
 
     return li;
 }

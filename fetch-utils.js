@@ -34,7 +34,7 @@ export async function createPost(post) {
 }
 
 export async function getPosts() {
-    return await client.from('reddit-posts').select('*');
+    return await client.from('reddit_posts').select('*');
 }
 
 export async function uploadImage(bucketName, imagePath, imageFile) {
