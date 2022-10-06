@@ -1,6 +1,9 @@
 export function renderPost(post) {
     const li = document.createElement('li');
 
+    const a = document.createElement('a');
+    a.href = `/post/?id=${post.id}`;
+
     const img = document.createElement('img');
     img.src = post.image_url;
     if (!post.image_url) {
@@ -19,7 +22,8 @@ export function renderPost(post) {
     const desc = document.createElement('p');
     desc.textContent = post.description;
 
-    li.append(h2, desc, img, timeStamp);
+    a.append(h2, desc, img, timeStamp);
+    li.append(a);
 
     return li;
 }

@@ -6,7 +6,6 @@ import { renderPost } from './render-utils.js';
 /* Get DOM Elements */
 const postList = document.getElementById('post-list');
 const errorDisplay = document.getElementById('error-display');
-const previewImage = document.querySelector('preview');
 /* State */
 let error = null;
 let posts = [];
@@ -25,15 +24,6 @@ window.addEventListener('load', async () => {
         displayPosts();
     }
 });
-
-// previewImage.addEventListener('load', () => {
-//     const file = previewImage.files[0];
-//     if (file) {
-//         previewImage.src = URL.createObjectURL(file);
-//     } else {
-//         previewImage.src = '/assets/placeholder-image.png';
-//     }
-// });
 
 /* Display Functions */
 
