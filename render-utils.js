@@ -36,3 +36,9 @@ function getCategoryEmoji(category) {
     if (category === 'finance') return '📈';
     if (category === 'tech') return '🤖';
 }
+
+export function renderComment(comment) {
+    const li = document.createElement('li');
+    li.textContent = comment.text;
+    return li;
+}

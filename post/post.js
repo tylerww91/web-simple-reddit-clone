@@ -2,12 +2,15 @@
 // this will check if we have a user and set signout link if it exists
 import '../auth/user.js';
 import { getPost } from '../fetch-utils.js';
+import { createComment } from '../fetch-utils.js';
+// import { renderComment } from '../render-utils.js';
 /* Get DOM Elements */
 
 const errorDisplay = document.getElementById('error-display');
 const postTitle = document.getElementById('post-title');
 const postImage = document.getElementById('post-image');
 const postDesc = document.getElementById('post-description');
+const addCommentForm = document.getElementById('add-comment-form');
 
 /* State */
 let error = null;
@@ -30,6 +33,28 @@ window.addEventListener('load', async () => {
         displayError();
     } else {
         displayPost();
+    }
+});
+
+addCommentForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(addCommentForm);
+    const insertComment = {
+        comments: formData.get('comment'),
+        post_id: post.id,
+    };
+
+    const response = await createComment(insertComment);
+    error = response.error;
+
+    if (error) {
+        displayError();
+    } else {
+        const comment = response.data;
+        post.comments.unshift(comment);
+        // displayComments();
+        addCommentForm.reset();
     }
 });
 
