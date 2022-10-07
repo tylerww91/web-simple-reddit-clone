@@ -3,7 +3,7 @@
 import '../auth/user.js';
 import { getPost } from '../fetch-utils.js';
 import { createComment } from '../fetch-utils.js';
-// import { renderComment } from '../render-utils.js';
+import { renderComment } from '../render-utils.js';
 /* Get DOM Elements */
 
 const errorDisplay = document.getElementById('error-display');
@@ -11,14 +11,16 @@ const postTitle = document.getElementById('post-title');
 const postImage = document.getElementById('post-image');
 const postDesc = document.getElementById('post-description');
 const addCommentForm = document.getElementById('add-comment-form');
+const commentList = document.getElementById('comment-list');
 
 /* State */
 let error = null;
-let post = [];
+let post = null;
+
 /* Events */
 window.addEventListener('load', async () => {
-    const searchPerams = new URLSearchParams(location.search);
-    const id = searchPerams.get('id');
+    const searchParams = new URLSearchParams(location.search);
+    const id = searchParams.get('id');
 
     if (!id) {
         location.replace('/');
@@ -33,6 +35,7 @@ window.addEventListener('load', async () => {
         displayError();
     } else {
         displayPost();
+        displayComments();
     }
 });
 
@@ -41,7 +44,7 @@ addCommentForm.addEventListener('submit', async (e) => {
 
     const formData = new FormData(addCommentForm);
     const insertComment = {
-        comments: formData.get('comment'),
+        text: formData.get('comment'),
         post_id: post.id,
     };
 
@@ -53,7 +56,7 @@ addCommentForm.addEventListener('submit', async (e) => {
     } else {
         const comment = response.data;
         post.comments.unshift(comment);
-        // displayComments();
+        displayComments();
         addCommentForm.reset();
     }
 });
@@ -66,6 +69,15 @@ function displayPost() {
     postImage.alt = `${post.title} image`;
     if (post.image_url.length <= 115) {
         postImage.src = '/assets/placeholder-image.png';
+    }
+}
+
+function displayComments() {
+    commentList.innerHTML = '';
+
+    for (const comment of post.comments) {
+        const commentEl = renderComment(comment, post.id);
+        commentList.append(commentEl);
     }
 }
 
