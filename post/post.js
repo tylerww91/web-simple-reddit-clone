@@ -32,7 +32,7 @@ window.addEventListener('load', async () => {
     post = response.data;
 
     if (error) {
-        displayError();
+        location.replace('/');
     } else {
         displayPost();
         displayComments();
