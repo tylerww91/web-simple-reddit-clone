@@ -95,3 +95,13 @@ li img {
 
 .post-image-preview {
 }
+
+li h2,
+li p,
+li span {
+    color: initial;
+}
+
+li a:link {
+    text-decoration: none;
+}
