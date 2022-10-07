@@ -55,6 +55,7 @@ postForm.addEventListener('submit', async (e) => {
 
 function displayError() {
     if (error) {
+        console.log(error);
         errorDisplay.textContent = error.message;
     } else {
         errorDisplay.textContent = '';

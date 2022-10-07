@@ -37,6 +37,15 @@ export async function getPosts() {
     return await client.from('reddit_posts').select('*');
 }
 
+export async function getPost(id) {
+    return await client
+        .from('reddit_posts')
+        .select('*, comments (*)')
+        .eq('id', id)
+        .order('created_at', { foreignTable: 'comments', ascending: false })
+        .single();
+}
+
 export async function uploadImage(bucketName, imagePath, imageFile) {
     const bucket = client.storage.from(bucketName);
 
