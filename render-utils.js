@@ -6,7 +6,7 @@ export function renderPost(post) {
 
     const img = document.createElement('img');
     img.src = post.image_url;
-    if (!post.image_url) {
+    if (post.image_url.length < 115) {
         img.src = '/assets/placeholder-image.png';
     }
 
